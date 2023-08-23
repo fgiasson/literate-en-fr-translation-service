@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "literate-en-fr-translation-service"
+  site-url: "https://fgiasson.github.io/literate-en-fr-translation-service"
+  description: "Literate version of `en-fr-translation-service` using `nbdev`"
+  repo-branch: main
+  repo-url: "https://github.com/fgiasson/literate-en-fr-translation-service"
