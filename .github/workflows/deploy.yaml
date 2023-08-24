@@ -12,7 +12,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps: 
-     - uses: fastai/workflows/quarto-ghp@master
      - name: Set up Python 3.10
        uses: actions/setup-python@v4
        with:
@@ -23,3 +22,4 @@ jobs:
      # You can test your matrix by printing the current Python version
      - name: Display Python version
        run: python -c "import sys; print(sys.version)"
+     - uses: fastai/workflows/quarto-ghp@master
