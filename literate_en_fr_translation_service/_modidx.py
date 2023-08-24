@@ -5,5 +5,11 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://fgiasson.github.io',
                 'git_url': 'https://github.com/fgiasson/literate-en-fr-translation-service',
                 'lib_path': 'literate_en_fr_translation_service'},
-  'syms': { 'literate_en_fr_translation_service.core': { 'literate_en_fr_translation_service.core.foo': ( 'core.html#foo',
-                                                                                                          'literate_en_fr_translation_service/core.py')}}}
+  'syms': { 'literate_en_fr_translation_service.download_models': { 'literate_en_fr_translation_service.download_models.download_model': ( 'download_models.html#download_model',
+                                                                                                                                           'literate_en_fr_translation_service/download_models.py')},
+            'literate_en_fr_translation_service.main': { 'literate_en_fr_translation_service.main.get_model': ( 'main.html#get_model',
+                                                                                                                'literate_en_fr_translation_service/main.py'),
+                                                         'literate_en_fr_translation_service.main.is_translation_supported': ( 'main.html#is_translation_supported',
+                                                                                                                               'literate_en_fr_translation_service/main.py'),
+                                                         'literate_en_fr_translation_service.main.translate_endpoint': ( 'main.html#translate_endpoint',
+                                                                                                                         'literate_en_fr_translation_service/main.py')}}}
