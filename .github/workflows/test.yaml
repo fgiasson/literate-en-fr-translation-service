@@ -13,6 +13,6 @@ jobs:
          python-version: '3.x'
          # Optional - x64 or x86 architecture, defaults to x64
          architecture: 'x64'
-    # You can test your matrix by printing the current Python version
-    - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
+     # You can test your matrix by printing the current Python version
+     - name: Display Python version
+       run: python -c "import sys; print(sys.version)"
