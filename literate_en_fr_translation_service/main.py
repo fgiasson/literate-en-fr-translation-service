@@ -15,11 +15,13 @@ def get_model(model_path):
     model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
     return model, tokenizer
 
+# %% ../nbs/00_main.ipynb 7
+#| eval: false
 # Load the models and tokenizers for each supported language
 en_fr_model, en_fr_tokenizer = get_model('models/en_fr/')
 fr_en_model, fr_en_tokenizer = get_model('models/fr_en/')
 
-# %% ../nbs/00_main.ipynb 8
+# %% ../nbs/00_main.ipynb 9
 app = Flask(__name__)
 
 def is_translation_supported(from_lang, to_lang):
@@ -30,7 +32,7 @@ def is_translation_supported(from_lang, to_lang):
 @app.route('/translate/<from_lang>/<to_lang>/', methods=['POST'])
 def translate_endpoint(from_lang, to_lang):
     """Translate text from one language to another. This function is 
-    called when a POST request is sent to /translate/<from_lang>/<to_lang>/"""
+    called when a POST request is sent to `/translate/<from_lang>/<to_lang>/`"""
     if not is_translation_supported(from_lang, to_lang):
         return jsonify({'error': 'Translation not supported'}), 400
 
@@ -55,6 +57,7 @@ def translate_endpoint(from_lang, to_lang):
     else:
         return jsonify({'error': 'Text to translate not provided'}), 400
 
-# %% ../nbs/00_main.ipynb 10
+# %% ../nbs/00_main.ipynb 11
+#| eval: false
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000, debug=True)

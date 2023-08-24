@@ -23,5 +23,6 @@ def download_model(model_path, model_name):
 
 
 # %% ../nbs/01_download_models.ipynb 8
+#| eval: false
 download_model('models/en_fr/', 'Helsinki-NLP/opus-mt-en-fr')
 download_model('models/fr_en/', 'Helsinki-NLP/opus-mt-fr-en')
