@@ -57,7 +57,7 @@ def translate_endpoint(from_lang, to_lang):
     else:
         return jsonify({'error': 'Text to translate not provided'}), 400
 
-# %% ../nbs/00_main.ipynb 11
+# %% ../nbs/00_main.ipynb 12
 #| eval: false
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000, debug=True)
