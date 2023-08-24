@@ -9,6 +9,4 @@ jobs:
        uses: fastai/workflows/nbdev-ci@master
        with:
          # Semantic version range syntax or exact version of a Python version
-         python-version: '3.10'
-         # Optional - x64 or x86 architecture, defaults to x64
-         architecture: 'x64'
+         version: '3.10'
