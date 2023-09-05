@@ -9,7 +9,7 @@ from flask import Flask, request, jsonify
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 # %% ../nbs/01_main.ipynb 6
-def get_model(model_path):
+def get_model(model_path: str):
     """Load a Hugging Face model and tokenizer from the specified directory"""
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
@@ -24,13 +24,13 @@ fr_en_model, fr_en_tokenizer = get_model('models/fr_en/')
 # %% ../nbs/01_main.ipynb 9
 app = Flask(__name__)
 
-def is_translation_supported(from_lang, to_lang):
+def is_translation_supported(from_lang: str, to_lang: str):
     """Check if the specified translation is supported"""
     supported_translations = ['en_fr', 'fr_en']
     return f'{from_lang}_{to_lang}' in supported_translations
 
 @app.route('/translate/<from_lang>/<to_lang>/', methods=['POST'])
-def translate_endpoint(from_lang, to_lang):
+def translate_endpoint(from_lang: str, to_lang: str):
     """Translate text from one language to another. This function is 
     called when a POST request is sent to `/translate/<from_lang>/<to_lang>/`"""
     if not is_translation_supported(from_lang, to_lang):

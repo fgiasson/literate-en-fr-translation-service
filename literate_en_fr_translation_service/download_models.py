@@ -8,7 +8,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import os
 
 # %% ../nbs/00_download_models.ipynb 6
-def download_model(model_path, model_name):
+def download_model(model_path: str, model_name: str):
     """Download a Hugging Face model and tokenizer to the specified directory"""
     # Check if the directory already exists
     if not os.path.exists(model_path):
