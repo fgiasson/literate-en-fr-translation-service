@@ -1,0 +1,1 @@
+Sitemap: https://fgiasson.github.io/literate-en-fr-translation-service/sitemap.xml

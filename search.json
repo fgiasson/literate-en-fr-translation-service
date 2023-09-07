@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "How to Deploy Hugging Face Models in a Docker Container",
+    "section": "",
+    "text": "To use the translation service, you need to have Docker installed. The best way to install it is by installing Docker Desktop of your local computer.\nThe next step is to clone this repository:\ngit clone https://github.com/fgiasson/literate-en-fr-translation-service.git\nFinally, you only have to run this Make command to build the Docker image:\nmake build\nThat will create the Docker image from which you will be able to create a container using Docker Decktop.\nRefer to this blog post for detailed information about how it works."
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "How to Deploy Hugging Face Models in a Docker Container",
+    "section": "",
+    "text": "To use the translation service, you need to have Docker installed. The best way to install it is by installing Docker Desktop of your local computer.\nThe next step is to clone this repository:\ngit clone https://github.com/fgiasson/literate-en-fr-translation-service.git\nFinally, you only have to run this Make command to build the Docker image:\nmake build\nThat will create the Docker image from which you will be able to create a container using Docker Decktop.\nRefer to this blog post for detailed information about how it works."
+  },
+  {
+    "objectID": "index.html#web-service-endpoints",
+    "href": "index.html#web-service-endpoints",
+    "title": "How to Deploy Hugging Face Models in a Docker Container",
+    "section": "Web Service Endpoints",
+    "text": "Web Service Endpoints\nOnce you have the container running, you can use the web service endpoints to translate text from English to French and vice-versa. The two endpoints are:\n\n/translate/en/fr\n/translate/fr/en\n\nThen you can test the web service endpoints using curl:\ncurl http://localhost:6000/translate/en/fr/ POST -H \"Content-Type: application/json\" -d '{\"en_text\":\"Hello World!\"}'\nThe output should be:\n{\n  \"fr_text\": \"Bonjour le monde!\"\n}\ncurl http://localhost:6000/translate/fr/en/ POST -H \"Content-Type: application/json\" -d '{\"fr_text\":\"Bonjour le monde!\"}'\nThe output should be:\n{\n  \"en_text\": \"Hello world!\"\n}"
+  },
+  {
+    "objectID": "download_models.html",
+    "href": "download_models.html",
+    "title": "Download Models",
+    "section": "",
+    "text": "We import the AutoTokenizer and AutoModelForSeq2SeqLM classes from Hugging Face’s transformers library. Those are used to automatically load any type of model and tokenizer.\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\nimport os"
+  },
+  {
+    "objectID": "download_models.html#download-models",
+    "href": "download_models.html#download-models",
+    "title": "Download Models",
+    "section": "Download Models",
+    "text": "Download Models\nThe final step is to download the English/French translation model and the French/English translation model which are two different\n\ndownload_model('models/en_fr/', 'Helsinki-NLP/opus-mt-en-fr')\ndownload_model('models/fr_en/', 'Helsinki-NLP/opus-mt-fr-en')"
+  },
+  {
+    "objectID": "main.html",
+    "href": "main.html",
+    "title": "Main",
+    "section": "",
+    "text": "Imports\nWe are using Flask to define the web service endpoints, and we are using Hugging Face’s transformers library to load the model and perform the translation.\n\nfrom flask import Flask, request, jsonify\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\n\n\nLoading Models\nWe are loading the models from the models folder. The models are MarianMT models.\n\nsource\n\nget_model\n\n get_model (model_path:str)\n\nLoad a Hugging Face model and tokenizer from the specified directory\n\n# Load the models and tokenizers for each supported language\nen_fr_model, en_fr_tokenizer = get_model('models/en_fr/')\nfr_en_model, fr_en_tokenizer = get_model('models/fr_en/')\n\n\n\n\nWeb Service Endpoints\nThe next step is to use Flask to create the English/French and French/English translation web service endpoints.\nWe first check if the path to the translation web service exists. The two paths currently defined are:\n\n/translate/en/fr\n/translate/fr/en\n\nOnce the container is running, we can test the web service endpoints using curl:\ncurl http://localhost:6000/translate/en/fr/ POST -H \"Content-Type: application/json\" -d '{\"en_text\":\"Hello World!\"}'\nThe output should be:\n{\n  \"fr_text\": \"Bonjour le monde!\"\n}\ncurl http://localhost:6000/translate/fr/en/ POST -H \"Content-Type: application/json\" -d '{\"fr_text\":\"Bonjour le monde!\"}'\nThe output should be:\n{\n  \"en_text\": \"Hello world!\"\n}\n\nsource\n\ntranslate_endpoint\n\n translate_endpoint (from_lang:str, to_lang:str)\n\nTranslate text from one language to another. This function is called when a POST request is sent to /translate/&lt;from_lang&gt;/&lt;to_lang&gt;/\n\nsource\n\n\nis_translation_supported\n\n is_translation_supported (from_lang:str, to_lang:str)\n\nCheck if the specified translation is supported\n\nassert is_translation_supported('en', 'fr')\nassert is_translation_supported('fr', 'en')\nassert not is_translation_supported('en', 'es')\nassert not is_translation_supported('es', 'en')\n\n\n\n\nEntrypoint\nFinally, we define the entry point of the application. This is the file that will be executed when the container is run. It will run the Flask application on port 6000 and enables the debug mode.\n\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=6000, debug=True)"
+  }
+]
