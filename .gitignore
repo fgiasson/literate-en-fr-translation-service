@@ -1,6 +1,11 @@
 # Ignore `models` folders
 models/
 
+.terraform
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+graph.png
 
 
 _docs/
